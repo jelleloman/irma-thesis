@@ -17,12 +17,12 @@
   <body>
     <div id='container'>
         <h2>IRMA election registration demo</h2>
-        <p>Enter the attribute that needs to be verified, along with an optional label.</p>
+        <p>Enter the attribute that needs to be verified, in this case the email address you want to use to vote. If you can show ownership of that attribute, a 'voting card' will be issued (in this case a fake IRMATube membership with the type set to 'vote').</p>
 
         <label for="attr" class="label">Attribute:</label>
         <input id="attr" type="text" value="irma-demo.sidn-pbdf.email.email"><br/>
-        <label for="label" class="label">Label:</label>
-        <input id="label" type="text"><br/>
+        <label for="email" class="label">E-mail:</label>
+        <input id="email" type="text" value="irma-demo@irma-demo.nl"><br/>
         <!-- <label for="message" class="label">Message:</label>
         <input id="message" type="text"><br/> -->
         <button id="verify">Verify</button>

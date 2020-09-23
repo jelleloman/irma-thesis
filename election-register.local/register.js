@@ -13,16 +13,24 @@ window.onload = function() {
 // Package user values into an IRMA request object, and perform a session
 function doVerificationSession() {
   const attr = document.getElementById('attr').value;
-  const label = document.getElementById('label').value;
-  const labelRequest = !label ? {} : {'labels': {'0': {'en': label, 'nl': label}}};
+  const email = document.getElementById('email').value;
+  // const label = document.getElementById('label').value;
+  // const labelRequest = !label ? {} : {'labels': {'0': {'en': label, 'nl': label}}};
+  const id = Math.floor(Math.random() * 1000000000) + 1;
   const request = {
-    '@context': 'https://irma.app/ld/request/disclosure/v2',
+    '@context': 'https://irma.app/ld/request/issuance/v2',
+    'credentials': [{
+        'credential': 'irma-demo.IRMATube.member',
+        'attributes': {
+            'type': 'vote',
+            'id': id.toString()
+        }
+    }],
     'disclose': [
       [
-        [ attr ]
+        [ {'type': 'irma-demo.sidn-pbdf.email.email', 'value': email} ]
       ]
-    ],
-    ...labelRequest
+    ]
   };
   doSession(request).then(function(result) {
                         parseResult(result);
