@@ -8,6 +8,7 @@ const irma = require('./irma.js');
 
 window.onload = function() {
     document.getElementById('vote').addEventListener('click', registerVote);
+    document.getElementById('vote').disabled = true;
 }
 
 // Package user values into an IRMA request object, and perform a session

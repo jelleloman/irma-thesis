@@ -64,9 +64,9 @@ If you don't have this demo attribute yet, you can get it [here](https://privacy
 (To come)
 
 ### election-register.local
-With an `irma server` running in the background, navigate to `election-register.local`, and scan the QR code with your USB connected device. This should prompt you to disclose your `irma-demo.sidn-pbdf.email.email` attribute.
+With an `irma server` running in the background, navigate to `election-register.local`. Enter the e-mail address you wish to vote with in the 'E-mail' box. The value in the 'Attribute' box should be left alone. This should prompt you to disclose your `irma-demo.sidn-pbdf.email.email` attribute.
 
-(Unfinished!) If this attribute is present, and its value appears on the `admin` database, you will be issued a voting token. This token can then be used to cast a vote on `election-vote.local`.
+If this attribute is present, you will be issued a 'voting token' (a demo [IRMATube membership](https://privacybydesign.foundation/attribute-index/nl/irma-demo.IRMATube.member.html) card that has a 'vote' type). This token can then be used to cast a vote on `election-vote.local`.
 
 ### election-vote.local
-(To come)
+Select an option from the list, and click the 'Vote' button. Scan the QR code with the IRMA app to sign your vote; the app should indicate your choice in natural language. 
