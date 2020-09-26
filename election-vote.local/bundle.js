@@ -4496,7 +4496,7 @@ function registerVote() {
   if (radios[i].checked) {
     const request = {
       '@context': 'https://irma.app/ld/request/signature/v2',
-      'message': 'I choose to vote for ' + radios[i].label,
+      'message': 'I choose to vote for ' + radios[i].value,
       'disclose': [
         [
           [ {'type': 'irma-demo.IRMATube.member.type', 'value': 'vote'},

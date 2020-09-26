@@ -15,28 +15,29 @@ window.onload = function() {
 function registerVote() {
   var radios = document.getElementsByName('options');
   for (var i = 0, length = radios.length; i < length; i++) {
-  if (radios[i].checked) {
-    const request = {
-      '@context': 'https://irma.app/ld/request/signature/v2',
-      'message': 'I choose to vote for ' + radios[i].value,
-      'disclose': [
-        [
-          [ {'type': 'irma-demo.IRMATube.member.type', 'value': 'vote'},
-            {'type': 'irma-demo.IRMATube.member.id', 'value': null}
-          ]
-        ]
-      ]
-    };
-    doSession(request).then(function(result) {
-                          parseResult(result);
-                      })
-                      .catch(function(err) {
-                          console.error(err);
-                      });
+      if (radios[i].checked) {
+        const request = {
+          '@context': 'https://irma.app/ld/request/signature/v2',
+          'message': 'I choose to vote for ' + radios[i].value,
+          'disclose': [
+            [
+              [ {'type': 'irma-demo.IRMATube.member.type', 'value': 'vote'},
+                {'type': 'irma-demo.IRMATube.member.id', 'value': null}
+              ]
+            ]
+        ]/*,
+          'clientReturnUrl': 'election-vote.local/success'*/
+        };
+        doSession(request).then(function(result) {
+                              parseResult(result);
+                          })
+                          .catch(function(err) {
+                              console.error(err);
+                          });
 
-    break;
-    }
-  }
+        break;
+      }
+   }
 }
 
 // Perform a stock, !unsafe! IRMA session with 'request'
@@ -71,7 +72,7 @@ function doSession(request) {
 function parseResult(result) {
     /* Raw result example
     {
-      "token": "HkbPBlDALeNymUZj1VKg",
+      "token": "h01vJdKF56mT4SW3NbGD",
       "status": "DONE",
       "type": "signing",
       "proofStatus": "VALID",
@@ -105,12 +106,12 @@ function parseResult(result) {
         "@context": "https://irma.app/ld/signature/v2",
         "signature": [
           {
-            "c": "uCCqLcuJFn2Yg5pi55CVyhjYl/u4yLcqP6cipqbKbmI=",
-            "A": "ZllhrnokVTWH61Sce0NXn0nyU42S2oJHHtJdbWlbamde0qLiv7kTEjmVFNjYieAdQswGZRoi+L2BegENk4y9GAZkX6eVtcnvsjh0dkJeq0QRcrghp6sVvouYlSpJYtiJM/sMsqifIOgklg+LWm14fJKGHQJ7hfobGcqt6hR8wGE=",
-            "e_response": "iISjwdy+MK+rT3J2BjdJ0HsEHT58SFUIRh83qj3tzfpXfpBp0cZ2YwTN6ScisjqBALq4nIQ1Sfxg",
-            "v_response": "ASD+0wqsKdek2fkyb/OS1GTaCkd1U1kDFnlaIQhQeKitPfaq4a4CAWtK2dhrQ2WvLfxzDx9YwJTBdZSfVjwHEa2nV0GktABeBVW9ISPKgNXSCozny81weZzwgsGDxa8vliKYxsi6Nu0RsPDZiQGqhCemKtq1FWoFXGoW6GJ+SbkOkQA89fooBDtbqQgh4CVPofzXqR3rhkN9hZx581fGAJrwCy6lfw0D2yf8tQh8T/I7Yn2Di/IIBtqBdNWIHsMXZFbg/rirHGrGUZ+pxiOc54yfkYYgHz+X23mOWM4Bn+SjDNm3cEdnmKrGPAgQoq3AyTNJyfXl++YKCISvx4zY",
+            "c": "4mACR4HgF4PvkLYfJSSTK1piG+F+IkBVPxudViWn1XE=",
+            "A": "Yv4yVCNYMGgI/foYIrnIZozqfWzd4/MHKv9wBbso2ajXxr7PJM2pXaSXmTbeatPnb86jujMrUoBo3seNLJ8b0vXA5Qk2xh6GEE1SOFnzEVPM4yV882BIoD4npV02MzWYfIe6I/YIaxeUmRikp/SObXI2lY1UcPPG/1mudKLHap8=",
+            "e_response": "Zoeo7MFLBEmsKOjTuRn1xBvuMVKcjN6bz4trwOkqupi6uJnjrfc7FTYOH25EmbU0jcuh8LdFkpcL",
+            "v_response": "C6a+yD1GQAAeSNviX1wzhQQW1l3o1bTAqw3OxpbyIBzzbp/ivNX2xWsID66bwERPAn7aGNcFaC2OX2U1KKapPrdC2ZXmSnWOyOS1IQwfsO4hf1yRBy0sCZHdNtz+LSE87oYgIvqmWDaNzPsMcsMey7Sct0G78eUAL0VBIlTX7sOG+Nsp+ry4/XHkfGyQYEukRXWji6E83L07WfF70gsFFi/tAa/Sq5X0drvBf/P4Oca2AzTtXd9GaYnpeR+Xp77kqFpaTbsHWmJYEVyIhHJBg6P9WhNqP3ytNV4qsJRZva7VpCjleL+AkB00ZK3kIdoXK8W/mvZSwi9oEBJibmm1",
             "a_responses": {
-              "0": "2CZte2pzfC6IgHs8aqitUCP45aky6BKM2oqLounQstNLSFBQvSfy8nAoBJLfE+cFQR8TxxvZjpppZNPIXaWFgkJyRw2D7pHePWQ="
+              "0": "BOxm+tLH1Wl4XANOkSLieC1l49smUOCqOBm3AwPq/OEU0axluKCHBQdDWYTA1XZrYFLyHgG7md/zTsz0haz2Xl9ZrtZKRcjIlO4="
             },
             "a_disclosed": {
               "1": "AwAKVgAaAAHoerasdGHy0VAlhe6aBc8l",
@@ -131,15 +132,15 @@ function parseResult(result) {
             }
           ]
         ],
-        "nonce": "7Ih1/jNcYA5z+KTKJxVMTA==",
+        "nonce": "fEB2jHmaMSqkI+o1lrK3RA==",
         "context": "AQ==",
-        "message": "I choose to vote for option1",
+        "message": "I choose to vote for Option 1",
         "timestamp": {
-          "Time": 1600848776,
+          "Time": 1600859876,
           "ServerUrl": "https://keyshare.privacybydesign.foundation/atumd/",
           "Sig": {
             "Alg": "ed25519",
-            "Data": "+EN6G7zW5z1w3Q6FzZEvCiIM1Dxw0dfPIp1EwjKlkRJTYyfM0heBbYFfFmzhVYWqOefJ5oRCNlRKeJyUhgsIAQ==",
+            "Data": "OywV+m4FoXdVxthZtZ+TVuycBPfF1qYXg4bxsScuOqMHE4208WvOC596elhKREz9xvPCaRhk5h1d9TJ/D1POAw==",
             "PublicKey": "MKdXxJxEWPRIwNP7SuvP0J/M/NV51VZvqCyO+7eDwJ8="
           }
         }
