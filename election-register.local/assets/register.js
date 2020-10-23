@@ -7,12 +7,12 @@
 const irma = require('./irma.js');
 
 window.onload = function() {
-    document.getElementById('verify').addEventListener('click', doVerificationSession);
+    document.getElementById('register').addEventListener('click', doVerificationSession);
 }
 
 // Package user values into an IRMA request object, and perform a session
 function doVerificationSession() {
-  const attr = document.getElementById('attr').value;
+  // const attr = document.getElementById('attr').value;
   const email = document.getElementById('email').value;
   // const label = document.getElementById('label').value;
   // const labelRequest = !label ? {} : {'labels': {'0': {'en': label, 'nl': label}}};
@@ -28,7 +28,7 @@ function doVerificationSession() {
     }],
     'disclose': [
       [
-        [ {'type': 'irma-demo.sidn-pbdf.email.email', 'value': email} ]
+        [ {'type': 'pbdf.pbdf.email.email', 'value': email} ]
       ]
     ]
   };

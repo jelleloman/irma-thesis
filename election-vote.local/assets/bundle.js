@@ -4485,37 +4485,37 @@ module.exports = Url;
 const irma = require('./irma.js');
 
 window.onload = function() {
-    document.getElementById('verify').addEventListener('click', doVerificationSession);
+    document.getElementById('vote').addEventListener('click', registerVote);
+    document.getElementById('vote').disabled = true;
 }
 
 // Package user values into an IRMA request object, and perform a session
-function doVerificationSession() {
-  const attr = document.getElementById('attr').value;
-  const email = document.getElementById('email').value;
-  // const label = document.getElementById('label').value;
-  // const labelRequest = !label ? {} : {'labels': {'0': {'en': label, 'nl': label}}};
-  const id = Math.floor(Math.random() * 1000000000) + 1;
-  const request = {
-    '@context': 'https://irma.app/ld/request/issuance/v2',
-    'credentials': [{
-        'credential': 'irma-demo.IRMATube.member',
-        'attributes': {
-            'type': 'vote',
-            'id': id.toString()
-        }
-    }],
-    'disclose': [
-      [
-        [ {'type': 'irma-demo.sidn-pbdf.email.email', 'value': email} ]
-      ]
-    ]
-  };
-  doSession(request).then(function(result) {
-                        parseResult(result);
-                    })
-                    .catch(function(err) {
-                        console.error(err);
-                    });
+function registerVote() {
+  var radios = document.getElementsByName('options');
+  for (var i = 0, length = radios.length; i < length; i++) {
+      if (radios[i].checked) {
+        const request = {
+          '@context': 'https://irma.app/ld/request/signature/v2',
+          'message': 'I choose to vote for ' + radios[i].value,
+          'disclose': [
+            [
+              [ {'type': 'irma-demo.IRMATube.member.type', 'value': 'vote'},
+                {'type': 'irma-demo.IRMATube.member.id', 'value': null}
+              ]
+            ]
+        ]/*,
+          'clientReturnUrl': 'election-vote.local/success'*/
+        };
+        doSession(request).then(function(result) {
+                              parseResult(result);
+                          })
+                          .catch(function(err) {
+                              console.error(err);
+                          });
+
+        break;
+      }
+   }
 }
 
 // Perform a stock, !unsafe! IRMA session with 'request'
@@ -4550,29 +4550,83 @@ function doSession(request) {
 function parseResult(result) {
     /* Raw result example
     {
-      "token": "ptzsaM8FfhDxe1hxEaFp",
+      "token": "h01vJdKF56mT4SW3NbGD",
       "status": "DONE",
-      "type": "disclosing",
+      "type": "signing",
       "proofStatus": "VALID",
       "disclosed": [
         [
           {
-            "rawvalue": "irma-demo@irma-demo.nl",
+            "rawvalue": "vote",
             "value": {
-              "": "irma-demo@irma-demo.nl",
-              "en": "irma-demo@irma-demo.nl",
-              "nl": "irma-demo@irma-demo.nl"
+              "": "vote",
+              "en": "vote",
+              "nl": "vote"
             },
-            "id": "irma-demo.sidn-pbdf.email.email",
+            "id": "irma-demo.IRMATube.member.type",
             "status": "PRESENT",
-            "issuancetime": 1598486400
+            "issuancetime": 1600300800
+          },
+          {
+            "rawvalue": "517633040",
+            "value": {
+              "": "517633040",
+              "en": "517633040",
+              "nl": "517633040"
+            },
+            "id": "irma-demo.IRMATube.member.id",
+            "status": "PRESENT",
+            "issuancetime": 1600300800
           }
         ]
-      ]
+      ],
+      "signature": {
+        "@context": "https://irma.app/ld/signature/v2",
+        "signature": [
+          {
+            "c": "4mACR4HgF4PvkLYfJSSTK1piG+F+IkBVPxudViWn1XE=",
+            "A": "Yv4yVCNYMGgI/foYIrnIZozqfWzd4/MHKv9wBbso2ajXxr7PJM2pXaSXmTbeatPnb86jujMrUoBo3seNLJ8b0vXA5Qk2xh6GEE1SOFnzEVPM4yV882BIoD4npV02MzWYfIe6I/YIaxeUmRikp/SObXI2lY1UcPPG/1mudKLHap8=",
+            "e_response": "Zoeo7MFLBEmsKOjTuRn1xBvuMVKcjN6bz4trwOkqupi6uJnjrfc7FTYOH25EmbU0jcuh8LdFkpcL",
+            "v_response": "C6a+yD1GQAAeSNviX1wzhQQW1l3o1bTAqw3OxpbyIBzzbp/ivNX2xWsID66bwERPAn7aGNcFaC2OX2U1KKapPrdC2ZXmSnWOyOS1IQwfsO4hf1yRBy0sCZHdNtz+LSE87oYgIvqmWDaNzPsMcsMey7Sct0G78eUAL0VBIlTX7sOG+Nsp+ry4/XHkfGyQYEukRXWji6E83L07WfF70gsFFi/tAa/Sq5X0drvBf/P4Oca2AzTtXd9GaYnpeR+Xp77kqFpaTbsHWmJYEVyIhHJBg6P9WhNqP3ytNV4qsJRZva7VpCjleL+AkB00ZK3kIdoXK8W/mvZSwi9oEBJibmm1",
+            "a_responses": {
+              "0": "BOxm+tLH1Wl4XANOkSLieC1l49smUOCqOBm3AwPq/OEU0axluKCHBQdDWYTA1XZrYFLyHgG7md/zTsz0haz2Xl9ZrtZKRcjIlO4="
+            },
+            "a_disclosed": {
+              "1": "AwAKVgAaAAHoerasdGHy0VAlhe6aBc8l",
+              "2": "7N7oyw==",
+              "3": "amJubGZmYGhh"
+            }
+          }
+        ],
+        "indices": [
+          [
+            {
+              "cred": 0,
+              "attr": 2
+            },
+            {
+              "cred": 0,
+              "attr": 3
+            }
+          ]
+        ],
+        "nonce": "fEB2jHmaMSqkI+o1lrK3RA==",
+        "context": "AQ==",
+        "message": "I choose to vote for Option 1",
+        "timestamp": {
+          "Time": 1600859876,
+          "ServerUrl": "https://keyshare.privacybydesign.foundation/atumd/",
+          "Sig": {
+            "Alg": "ed25519",
+            "Data": "OywV+m4FoXdVxthZtZ+TVuycBPfF1qYXg4bxsScuOqMHE4208WvOC596elhKREz9xvPCaRhk5h1d9TJ/D1POAw==",
+            "PublicKey": "MKdXxJxEWPRIwNP7SuvP0J/M/NV51VZvqCyO+7eDwJ8="
+          }
+        }
+      }
     }
     */
-    console.log("Parsing retrieved result: ", result);
-    console.log("Raw email value: ", result.disclosed[0][0].rawvalue);
+    console.log("Parsing result.");
+    console.log(result);
 }
 
 },{"./irma.js":1}],38:[function(require,module,exports){
