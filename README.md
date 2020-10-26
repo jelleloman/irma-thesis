@@ -1,7 +1,8 @@
 # Small-scale digital elections with IRMA
 This repository contains the code for my Master's thesis project: a prototype of how to use the [IRMA framework](https://irma.app/docs/what-is-irma/) for small-scale digital elections.
 
-It consists of three 'websites' run locally with Apache.
+It consists of three websites that can be run locally with Apache.
+If you don't wish to download and/or configure Apache, simply download or clone this repository, and open the `index.html` file of the website folder you wish to use. You can skip the Apache configuration in this case.
 
 ## Installation and configuration
 This project was created and built on a MacBook, therefore only macOS specific instructions are listed here. Instructions for Linux will likely be very similar.
@@ -57,16 +58,16 @@ It can be a bit unpredictable, so don't be surprised if you need to run it quite
 ## Using the examples
 (Unfinished!) Flow description.
 
-It uses IRMA's `irma-demo.sidn-pbdf.email.email` attribute to determine election participation.
-If you don't have this demo attribute yet, you can get it [here](https://privacybydesign.foundation/attribute-index/en/irma-demo.sidn-pbdf.email.html) by entering an example value and clicking 'Issue'.
+These demos use the `pbdf.pbdf.email.email` attribute to determine election participation.
+If you don't have this attribute yet, you can load it into the IRMA app by tapping the hamburger menu, then on 'Adding cards' and 'Email address', and following the instructions.
 
 ### election-admin.local
-(To come)
+(Not yet implemented)
 
 ### election-register.local
-With an `irma server` running in the background, navigate to `election-register.local`. Enter the e-mail address you wish to vote with in the 'E-mail' box. The value in the 'Attribute' box should be left alone. This should prompt you to disclose your `irma-demo.sidn-pbdf.email.email` attribute.
+With an `irma server` running in the background, navigate to `election-register.local` (or open the `election-register.local/index.html` file). Enter the e-mail address you wish to vote with in the 'E-mail' box. This should prompt you to disclose your `pbdf.pbdf.email.email` attribute.
 
-If this attribute is present, you will be issued a 'voting token' (a demo [IRMATube membership](https://privacybydesign.foundation/attribute-index/nl/irma-demo.IRMATube.member.html) card that has a 'vote' type). This token can then be used to cast a vote on `election-vote.local`.
+If the email attribute you entered is disclosed successfully, you will be issued a 'voting token' (a demo [IRMATube membership](https://privacybydesign.foundation/attribute-index/nl/irma-demo.IRMATube.member.html) card that has a 'vote' type). This token can then be used to cast a vote on `election-vote.local`.
 
 ### election-vote.local
-Select an option from the list, and click the 'Vote' button. Scan the QR code with the IRMA app to sign your vote; the app should indicate your choice in natural language. 
+Select an option from the list, and click the 'Vote' button. Scan the QR code with the IRMA app to sign your vote with the voting token retrieved during registration. The app should indicate your choice in natural language.
