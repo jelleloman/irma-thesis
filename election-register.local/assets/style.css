@@ -564,7 +564,7 @@ blockquote {
  -webkit-box-flex:1;
  flex:1 1 auto;
  max-width:100%;
- padding:100px
+ padding:25px 50px;
 }
 .mainContainer .wrapper {
  text-align:left
