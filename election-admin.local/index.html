@@ -4,31 +4,62 @@
 <html>
 
   <head>
-    <title>IRMA election admin page</title>
+    <title>IRMA election dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
 
-    <script src="bundle.js"></script>
+    <script src="assets/bundle.js"></script>
   </head>
 
   <body>
-    <div id='container'>
-        <h2>IRMA election admin demo</h2>
-        <p>Set up an election for IRMA users by entering a list of eligable voters' qualifying attributes.
-        Make sure they are in a <code>.cvs</code> file, where each line starts with the attribute, followed by the value:</p>
-        <p><code>irma-demo.sidn-pbdf.email.email, irma-demo@irma-demo.nl</code></p>
-
-        <!-- <label for="attr" class="label">Attribute:</label>
-        <input id="attr" type="text" value="irma-demo.sidn-pbdf.email.email"><br/>
-        <label for="label" class="label">Label:</label>
-        <input id="label" type="text"><br/>
-        <label for="message" class="label">Message:</label>
-        <input id="message" type="text"><br/> -->
-        <button id="create">Create election</button>
-
+    <div class="fixedHeaderContainer">
+      <div class="headerWrapper wrapper">
+          <header><a href="/"><img class="logo" src="assets/irma_logo.png" alt="IRMA"><h2 class="headerTitleWithLogo">IRMA election</h2></a>
+              <div class="navigationWrapper navigationSlider">
+                  <nav class="slidingNav">
+                      <ul class="nav-site nav-site-internal">
+                          <li class="siteNavGroupActive">
+                              <a href="/" target="_self">Dashboard</a>
+                          </li>
+                          <li class="">
+                              <a href="https://privacybydesign.foundation/attribute-index/en/" target="_self">Attribute index</a>
+                          </li>
+                          <li class="">
+                              <a href="https://privacybydesign.foundation" target="_self">Privacy by Design Foundation</a>
+                          </li>
+                      </ul>
+                  </nav>
+              </div>
+          </header>
+      </div>
+    </div>
+    <div class="navPusher">
+        <div class="docMainWrapper" wrapper>
+            <div class="container mainContainer">
+                <div class="wrapper">
+                    <div class="post">
+                        <header class="postHeader">
+                            <h1 class="postHeaderTitle">IRMA election dashboard demo</h1>
+                        </header>
+                        <article>
+                            <p>This demo will showcase a dashboard for creating a digital election with the IRMA framework.
+                            It is not yet functional.</p>
+                        </article>
+                        <div class="createButton">
+                            <button class="button" id="register">Create an election</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <footer id="footer" class="nav-footer">
+                <div>
+                    <h1>This is a demonstration webpage</h1>
+                </div>
+            </footer> -->
+        </div>
     </div>
   </body>
 

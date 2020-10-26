@@ -405,9 +405,9 @@ input {
   border-radius:3px;
   display:inline-block;
 }
-.registerButton{
+.createButton{
     text-align: center;
-    padding-left: 162px;
+    padding:20px
 }
 .button {
  border:1px solid #004c92;

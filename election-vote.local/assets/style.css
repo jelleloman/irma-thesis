@@ -453,6 +453,7 @@ input {
 .button {
  border:1px solid #004c92;
  border-radius:3px;
+ background: white;
  color:#004c92;
  display:inline-block;
  font-size:14px;
