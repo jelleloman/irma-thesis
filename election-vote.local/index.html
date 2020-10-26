@@ -1,8 +1,80 @@
+<!doctype html>
+<!-- Demonstration webpage for a mock IRMA election.
+     This depends on the presence of bundle.js (see register.js for more on this). -->
 <html>
-  <head>
-    <title>Welcome to election-vote.local</title>
-  </head>
-  <body>
-    <h1>This will host a landing page to vote using your IRMA credentials</h1>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+      <meta content="utf-8" http-equiv="encoding">
+      <title>Vote in an IRMA election</title>
+
+      <link rel="stylesheet" type="text/css" href="assets/style.css">
+
+      <script src="assets/bundle.js"></script>
+      <script>
+          function check() {
+              document.getElementById('vote').disabled = false;
+          }
+      </script>
+    </head>
+
+    <body>
+      <div class="fixedHeaderContainer">
+        <div class="headerWrapper wrapper">
+            <header><a href="/"><img class="logo" src="assets/irma_logo.png" alt="IRMA"><h2 class="headerTitleWithLogo">IRMA election</h2></a>
+                <div class="navigationWrapper navigationSlider">
+                    <nav class="slidingNav">
+                        <ul class="nav-site nav-site-internal">
+                            <li class="siteNavGroupActive">
+                                <a href="/" target="_self">Vote</a>
+                            </li>
+                            <li class="">
+                                <a href="https://privacybydesign.foundation/attribute-index/en/" target="_self">Attribute index</a>
+                            </li>
+                            <li class="">
+                                <a href="https://privacybydesign.foundation" target="_self">Privacy by Design Foundation</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+        </div>
+      </div>
+      <div class="navPusher">
+          <div class="docMainWrapper" wrapper>
+            <div class="container mainContainer">
+                <div class="wrapper">
+                    <div class="post">
+                        <header class="postHeader">
+                            <h1 class="postHeaderTitle">Vote casting demo</h1>
+                        </header>
+                        <article>
+                            <p>This demo site shows the vote casting process for digital elections with IRMA.
+                            If you already have a mock-up voting card after registering <a href="http://election-register.local">here</a>, you can select an option below and click 'Vote'.
+                            This prompts you to scan a QR code to confirm your choice. Your vote will be shown in the mobile application in natural language before you confirm.</p>
+                        </article>
+                        <div class="voteOptions">
+                            <div class="radio-toolbar">
+                                <input type="radio" id="option1" name="options" value="Option 1" onclick="check()">
+                                <label for="option1">Option 1</label>
+                            </div>
+                            <div class="radio-toolbar">
+                                <input type="radio" id="option2" name="options" value="Option 2" onclick="check()">
+                                <label for="option2">Option 2</label>
+                            </div>
+                            <div class="radio-toolbar">
+                                <input type="radio" id="option3" name="options" value="Option 3" onclick="check()">
+                                <label for="option3">Option 3</label>
+                            </div>
+                        </div>
+                        <div class="voteButton">
+                            <button class="button" id="vote">Vote</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
   </body>
+
 </html>

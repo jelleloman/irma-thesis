@@ -4,29 +4,71 @@
 <html>
 
   <head>
-    <title>Register for IRMA election</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
+    <title>Register for an IRMA election</title>
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
 
-    <script src="bundle.js"></script>
+    <script src="assets/bundle.js"></script>
   </head>
 
   <body>
-    <div id='container'>
-        <h2>IRMA election registration demo</h2>
-        <p>Enter the attribute that needs to be verified, along with an optional label.</p>
+    <div class="fixedHeaderContainer">
+      <div class="headerWrapper wrapper">
+          <header><a href="/"><img class="logo" src="assets/irma_logo.png" alt="IRMA"><h2 class="headerTitleWithLogo">IRMA election</h2></a>
+              <div class="navigationWrapper navigationSlider">
+                  <nav class="slidingNav">
+                      <ul class="nav-site nav-site-internal">
+                          <li class="siteNavGroupActive">
+                              <a href="/" target="_self">Register</a>
+                          </li>
+                          <li class="">
+                              <a href="https://privacybydesign.foundation/attribute-index/en/" target="_self">Attribute index</a>
+                          </li>
+                          <li class="">
+                              <a href="https://privacybydesign.foundation" target="_self">Privacy by Design Foundation</a>
+                          </li>
+                      </ul>
+                  </nav>
+              </div>
+          </header>
+      </div>
+    </div>
+    <div class="navPusher">
+        <div class="docMainWrapper" wrapper>
+            <div class="container mainContainer">
+                <div class="wrapper">
+                    <div class="post">
+                        <header class="postHeader">
+                            <h1 class="postHeaderTitle">IRMA election registration demo</h1>
+                        </header>
+                        <article>
+                            <p>This demo showcases the potential flow for registering for a digital election with the IRMA framework.
+                            Once an election has been set up, users can register to vote on this page by showing ownership of the attributes needed to participate in the election.</p>
 
-        <label for="attr" class="label">Attribute:</label>
-        <input id="attr" type="text" value="irma-demo.sidn-pbdf.email.email"><br/>
-        <label for="label" class="label">Label:</label>
-        <input id="label" type="text"><br/>
-        <!-- <label for="message" class="label">Message:</label>
-        <input id="message" type="text"><br/> -->
-        <button id="verify">Verify</button>
-
+                            <p>For this example, only the possession of a <code>pbdf.pbdf.email.email</code> attribute is checked.
+                            Enter your email address below, and click on 'Register' to receive a mock-up voting card.</p>
+                        </article>
+                        <div class="inputs">
+                            <!-- <label for="attr" class="label">Attribute:</label> -->
+                            <!-- <input id="attr" type="text" value="pbdf.pbdf.email.email"><br/> -->
+                            <!-- <label for="email" class="label">E-mail:</label> -->
+                            <input id="email" type="text" value="j.loman@student.ru.nl"><br/>
+                        </div>
+                        <div class="registerButton">
+                            <button class="button" id="register">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <footer id="footer" class="nav-footer">
+                <div>
+                    <h1>This is a demonstration webpage</h1>
+                </div>
+            </footer> -->
+        </div>
     </div>
   </body>
 
