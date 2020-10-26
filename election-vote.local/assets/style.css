@@ -678,6 +678,9 @@ blockquote {
  .mainContainer .wrapper .post {
   display:block
  }
+ .wrapper {
+   max-width: 800px
+ }
  .mainContainer .wrapper .posts .post {
   width:100%
  }
