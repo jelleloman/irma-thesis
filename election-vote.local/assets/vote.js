@@ -21,17 +21,19 @@ function registerVote() {
           'message': 'I choose to vote for ' + radios[i].value,
           'disclose': [
             [
-              [ {'type': 'irma-demo.IRMATube.member.type', 'value': 'vote'},
-                {'type': 'irma-demo.IRMATube.member.id', 'value': null}
+              [
+                  { 'type': "irma-demo.stemmen.stempas.election", 'value': "Demo Election" },
+                  { 'type': "irma-demo.stemmen.stempas.votingnumber", 'value': null }
               ]
             ]
-        ]/*,
-          'clientReturnUrl': 'election-vote.local/success'*/
+          ]
         };
         doSession(request).then(function(result) {
-                              parseResult(result);
+                              console.log("Signature sent, navigating to success page");
+                              window.location.replace('http://election-vote.local/assets/success.html');
                           })
                           .catch(function(err) {
+                              window.location.replace('http://election-vote.local/assets/error.html');
                               console.error(err);
                           });
 

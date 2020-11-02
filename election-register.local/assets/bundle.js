@@ -16,6 +16,7 @@
 // If errors occur, perhaps 'npm install' will solve them.
 
 const irma = require('./irma.js');
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 window.onload = function() {
     document.getElementById('register').addEventListener('click', doVerificationSession);
@@ -23,18 +24,22 @@ window.onload = function() {
 
 // Package user values into an IRMA request object, and perform a session
 function doVerificationSession() {
-  // const attr = document.getElementById('attr').value;
   const email = document.getElementById('email').value;
-  // const label = document.getElementById('label').value;
-  // const labelRequest = !label ? {} : {'labels': {'0': {'en': label, 'nl': label}}};
-  const id = Math.floor(Math.random() * 1000000000) + 1;
+
+  var date = new Date();
+  var startDate = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + ", " + date.getHours() + ":" + date.getMinutes();
+  date.setDate(date.getDate() + 1);
+  var endDate = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + ", " + date.getHours() + ":" + date.getMinutes();
+
   const request = {
     '@context': 'https://irma.app/ld/request/issuance/v2',
     'credentials': [{
-        'credential': 'irma-demo.IRMATube.member',
+        'credential': 'irma-demo.stemmen.stempas',
         'attributes': {
-            'type': 'vote',
-            'id': id.toString()
+            'election': 'Demo Election',
+            'voteURL': 'http://election-vote.local',
+            'start': startDate,
+            'end': endDate
         }
     }],
     'disclose': [
