@@ -407,13 +407,12 @@ input {
 }
 .registerButton{
     text-align: center;
-    padding-left: 162px;
 }
 .button {
  border:1px solid #004c92;
  border-radius:3px;
- background: white;
- color:#004c92;
+ background: #004c92;
+ color:#fff;
  display:inline-block;
  font-size:14px;
  font-weight:400;
@@ -425,8 +424,8 @@ input {
  transition:background .3s,color .3s
 }
 .button:hover {
- background:#004c92;
- color:#fff
+ background:#fff;
+ color:#004c92
 }
 h1:hover .hash-link,
 h2:hover .hash-link,

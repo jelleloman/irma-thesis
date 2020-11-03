@@ -13,7 +13,7 @@ window.onload = function() {
 
 // Package user values into an IRMA request object, and perform a session
 function doVerificationSession() {
-  const email = document.getElementById('email').value;
+  // const email = document.getElementById('email').value;
 
   var date = new Date();
   var startDate = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + ", " + date.getHours() + ":" + date.getMinutes();
@@ -21,19 +21,10 @@ function doVerificationSession() {
   var endDate = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + ", " + date.getHours() + ":" + date.getMinutes();
 
   const request = {
-    '@context': 'https://irma.app/ld/request/issuance/v2',
-    'credentials': [{
-        'credential': 'irma-demo.stemmen.stempas',
-        'attributes': {
-            'election': 'Demo Election',
-            'voteURL': 'http://election-vote.local',
-            'start': startDate,
-            'end': endDate
-        }
-    }],
+    '@context': 'https://irma.app/ld/request/disclosure/v2',
     'disclose': [
       [
-        [ {'type': 'pbdf.pbdf.email.email', 'value': email} ]
+        [ 'pbdf.pbdf.email.email' ]
       ]
     ]
   };
