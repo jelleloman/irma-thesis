@@ -16,7 +16,7 @@
 // If errors occur, perhaps 'npm install' will solve them.
 
 const irma = require('./irma.js');
-const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const voters = ["j.loman@student.ru.nl"];
 
 window.onload = function() {
     document.getElementById('register').addEventListener('click', doVerificationSession);
@@ -24,13 +24,6 @@ window.onload = function() {
 
 // Package user values into an IRMA request object, and perform a session
 function doVerificationSession() {
-  // const email = document.getElementById('email').value;
-
-  var date = new Date();
-  var startDate = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + ", " + date.getHours() + ":" + date.getMinutes();
-  date.setDate(date.getDate() + 1);
-  var endDate = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + ", " + date.getHours() + ":" + date.getMinutes();
-
   const request = {
     '@context': 'https://irma.app/ld/request/disclosure/v2',
     'disclose': [
@@ -40,10 +33,22 @@ function doVerificationSession() {
     ]
   };
   doSession(request).then(function(result) {
-                        parseResult(result);
+                        var eligible = parseResult(result);
+                        if (!eligible) {
+                            var modal = document.getElementById("myModal");
+                            modal.style.display = "block";
+                        } else {
+                            console.log("Voter is eligible!");
+                            window.location.replace("http://election-register.local/views/retrieve.html")
+                        }
                     })
                     .catch(function(err) {
-                        console.error(err);
+                        if (err !== "CANCELLED") {
+                            console.log("Not a cancellation");
+                            console.error(err);
+                        } else {
+                            console.log("Just a cancellation...");
+                        }
                     });
 }
 
@@ -71,38 +76,39 @@ function doSession(request) {
              return result;
          })
          .catch(function(err) {
-             throw "Error performing session";
-             console.error(err);
+             console.error("Issue with irma session, returning error.");
+             throw err;
          });
 }
 
 function parseResult(result) {
-    /* Raw result example
-    {
-      "token": "ptzsaM8FfhDxe1hxEaFp",
-      "status": "DONE",
-      "type": "disclosing",
-      "proofStatus": "VALID",
-      "disclosed": [
-        [
-          {
-            "rawvalue": "irma-demo@irma-demo.nl",
-            "value": {
-              "": "irma-demo@irma-demo.nl",
-              "en": "irma-demo@irma-demo.nl",
-              "nl": "irma-demo@irma-demo.nl"
-            },
-            "id": "irma-demo.sidn-pbdf.email.email",
-            "status": "PRESENT",
-            "issuancetime": 1598486400
-          }
-        ]
-      ]
-    }
-    */
-    console.log("Parsing retrieved result: ", result);
-    console.log("Raw email value: ", result.disclosed[0][0].rawvalue);
+    var rawValue = result.disclosed[0][0].rawvalue;
+    return voters.includes(rawValue);
 }
+
+/* Raw result example
+{
+  "token": "ptzsaM8FfhDxe1hxEaFp",
+  "status": "DONE",
+  "type": "disclosing",
+  "proofStatus": "VALID",
+  "disclosed": [
+    [
+      {
+        "rawvalue": "irma-demo@irma-demo.nl",
+        "value": {
+          "": "irma-demo@irma-demo.nl",
+          "en": "irma-demo@irma-demo.nl",
+          "nl": "irma-demo@irma-demo.nl"
+        },
+        "id": "irma-demo.sidn-pbdf.email.email",
+        "status": "PRESENT",
+        "issuancetime": 1598486400
+      }
+    ]
+  ]
+}
+*/
 
 },{"./irma.js":1}],3:[function(require,module,exports){
 'use strict';

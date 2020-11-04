@@ -6,20 +6,22 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
       <meta content="utf-8" http-equiv="encoding">
-      <title>Something went wrong</title>
+      <title>Voting card retrieval</title>
 
-      <link rel="stylesheet" type="text/css" href="style.css">
+      <link rel="stylesheet" type="text/css" href="/assets/style.css">
+
+      <script src="/assets/bundle_retrieve.js"></script>
     </head>
 
     <body>
       <div class="fixedHeaderContainer">
         <div class="headerWrapper wrapper">
-            <header><a href=""><img class="logo" src="irma_logo.png" alt="IRMA"><h2 class="headerTitleWithLogo">IRMA election</h2></a>
+            <header><a href=""><img class="logo" src="/assets/irma_logo.png" alt="IRMA"><h2 class="headerTitleWithLogo">IRMA election</h2></a>
                 <div class="navigationWrapper navigationSlider">
                     <nav class="slidingNav">
                         <ul class="nav-site nav-site-internal">
                             <li class="siteNavGroupActive">
-                                <a href="">Error page</a>
+                                <a href="">Voting card retrieval</a>
                             </li>
                         </ul>
                     </nav>
@@ -33,11 +35,14 @@
                 <div class="wrapper">
                     <div class="post">
                         <header class="postHeader">
-                            <h1 class="postHeaderTitle">Something went wrong...</h1>
+                            <h1 class="postHeaderTitle">The final step</h1>
                         </header>
                         <article>
-                            <p>Something went wrong while registering your vote. You can try again <a href="/">here</a>. If problems persist, please contact the administrators of this election.</p>
+                            <p>Your identity has been confirmed, and you are able to participate in the upcoming election! To retreive your anonymous voting card, please scan the QR code below.</p>
                         </article>
+                        <div class="registerButton">
+                            <button class="button" id="retrieve">Get voting card</button>
+                        </div>
                     </div>
                 </div>
             </div>
