@@ -1,66 +1,66 @@
-const irma = require('./irma.js');
+require('@privacybydesign/irma-css');
+
+const IrmaCore   = require('@privacybydesign/irma-core');
+const IrmaWeb    = require('@privacybydesign/irma-web');
+const IrmaClient = require('@privacybydesign/irma-client');
+
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-window.onload = function() {
-    document.getElementById('retrieve').addEventListener('click', issueVotingCard);
+function formatDate (date) {
+    date = new Date(date);
+    var month = months[date.getMonth()];
+    var day = date.getDate();
+    var year = date.getFullYear();
+    var hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+    var minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+
+    return month + " " + day + ", " + year + ", " + hours + ":" + minutes;
 }
 
-// function formatDate (date) {
-//     return months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + ", " + date.getHours() + ":" + date.getMinutes();
-// }
+var date = new Date();
+var startDate = formatDate(date);
+var endDate = formatDate(date.setDate(date.getDate() + 1));
 
-function issueVotingCard() {
-    var date = new Date();
-    var startDate = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + ", " + date.getHours() + ":" + date.getMinutes();
-    date.setDate(date.getDate() + 1);
-    var endDate = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + ", " + date.getHours() + ":" + date.getMinutes();
+const irma = new IrmaCore({
+  debugging: false,
+  element:   '#irma-web-form',
+  language:  'en',
+  translations: {
+    header:  '<i class="irma-web-logo">IRMA</i>Retrieve your voting card',
+    loading: 'Just one second please!'
+  },
+  session: {
+      url: 'http://localhost:8088',
+      start: {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              '@context': 'https://irma.app/ld/request/issuance/v2',
+              'credentials': [{
+                  'credential': 'irma-demo.stemmen.stempas',
+                  'attributes': {
+                      'election': 'Demo Election',
+                      'voteURL': 'http://election-vote.local',
+                      'start': startDate,
+                      'end': endDate
+                  }
+              }]
+          })
+      }
+  }
+});
 
-    const request = {
-        '@context': 'https://irma.app/ld/request/issuance/v2',
-        'credentials': [{
-            'credential': 'irma-demo.stemmen.stempas',
-            'attributes': {
-                'election': 'Demo Election',
-                'voteURL': 'http://election-vote.local',
-                'start': startDate,
-                'end': endDate
-            }
-        }]
-    };
-    doSession(request).then(function(result) {
-                        window.location.replace("http://election-register.local/views/success.html");
-                    })
-                    .catch(function(err) {
-                        console.error(err);
-                        window.location.replace("http://election-register.local/views/error.html");
-                    });
-}
+irma.use(IrmaWeb);
+irma.use(IrmaClient);
 
-// Perform a stock, !unsafe! IRMA session with 'request'
-function doSession(request) {
-  console.log("Starting IRMA session.");
-
-  const server = 'http://localhost:8088';
-  const authmethod = 'none';
-  const key = '';
-  const requestorname = '';
-
-  return irma.startSession(server, request, authmethod, key, requestorname)
-         .then(function(pkg) {
-             let options = {
-                 server: server,
-                 token: pkg.token,
-                 method: 'popup',
-                 language: 'en'
-             };
-             return irma.handleSession(pkg.sessionPtr, options);
-         })
-         .then(function(result) {
-             console.log("Done with irma session, returning result.");
-             return result;
-         })
-         .catch(function(err) {
-             throw "Error performing session";
-             console.error(err);
-         });
-}
+irma.start()
+.then(result => console.log("Successful! 🎉", result))
+.catch(error => {
+  if (error === 'Aborted') {
+    console.log('We closed it ourselves, so no problem 😅');
+    return;
+  }
+  console.error("Couldn't do what you asked 😢", error);
+});

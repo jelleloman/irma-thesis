@@ -10,7 +10,7 @@
 
       <link rel="stylesheet" type="text/css" href="/assets/style.css">
 
-      <script src="/assets/bundle_retrieve.js"></script>
+      <script src="/assets/bundle_retrieve.js" type="text/javascript" defer></script>
     </head>
 
     <body>
@@ -40,14 +40,16 @@
                         <article>
                             <p>Your identity has been confirmed, and you are able to participate in the upcoming election! To retreive your anonymous voting card, please scan the QR code below.</p>
                         </article>
-                        <div class="registerButton">
-                            <button class="button" id="retrieve">Get voting card</button>
-                        </div>
+                    </div>
+                    <div style="height: 30px;"></div>
+                    <div class="irma-web-center-child column">
+                        <section class="irma-web-form" id="irma-web-form"></section>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+  </body>
   </body>
 
 </html>
