@@ -1,6 +1,6 @@
 # Voting registration site
 
-This folder contains the files for a registration website for a demo election. For project wide installation instruction, see the main folder's [README](../README.md).
+This folder contains the files for a voting website for a demo election. For project wide installation instruction, see the main folder's [README](../README.md).
 
 ### Installation
 In this directory, run the command
@@ -12,7 +12,7 @@ This will add a `node_modules` folder that contains all the necessary dependenci
 *Note: Because this is a demo website, there is no backend. To confirm your identity, only your `pbdf.pbdf.email.email` attribute is disclosed and evaluated against a preset value. You can change this value on the site itself for one-offs by clicking 'Change Attribute', but to do it more permanently (as to avoid repeating the same step over and over again), change the `input` value in `index.html`.*
 
 ### Changing functionality
-If you wish to change the behaviour of this example, feel free to change either the `register.js` or `retrieve.js` files in the `assets` folder. These control `index.html` and `views/retrieve.html` respectively.
+If you wish to change the behaviour of this example, feel free to change the `vote.js` file in the `assets` folder. This file controls `index.html` after it has been compiled.
 
 To then recompile the JavaScript, run
 ```bash
