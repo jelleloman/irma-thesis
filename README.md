@@ -7,7 +7,7 @@ It consists of the two websites
 
 that allow you to register and vote in a demo election respectively.
 
-If you don't wish to download and/or configure Apache to host these websites on your machine, simply download or clone this repository, and follow the instructions in both those folders' README files. You can skip the Apache configuration in this case, and just open the `index.html` files in each of the two folders after compilation.
+*If you don't wish to download and/or configure Apache to host these websites on your machine, simply download or clone this repository. You can skip the Apache configuration in this case, and just open the `index.html` files in each of the two folders.*
 
 ## Installation and configuration
 This project was created and built on a MacBook, therefore only macOS specific instructions are listed here. Instructions for Linux will likely be very similar.
