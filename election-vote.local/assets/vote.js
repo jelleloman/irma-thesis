@@ -55,33 +55,29 @@ document.getElementById('vote').addEventListener('click', () => {
 
 /* Raw result example
 {
-  "token": "h01vJdKF56mT4SW3NbGD",
+  "token": "uy6ckiu71DqkUPaGPvWG",
   "status": "DONE",
   "type": "signing",
   "proofStatus": "VALID",
   "disclosed": [
     [
       {
-        "rawvalue": "vote",
+        "rawvalue": "Demo Election",
         "value": {
-          "": "vote",
-          "en": "vote",
-          "nl": "vote"
+          "": "Demo Election",
+          "en": "Demo Election",
+          "nl": "Demo Election"
         },
-        "id": "irma-demo.IRMATube.member.type",
+        "id": "irma-demo.stemmen.stempas.election",
         "status": "PRESENT",
-        "issuancetime": 1600300800
+        "issuancetime": 1604534400
       },
       {
-        "rawvalue": "517633040",
-        "value": {
-          "": "517633040",
-          "en": "517633040",
-          "nl": "517633040"
-        },
-        "id": "irma-demo.IRMATube.member.id",
-        "status": "PRESENT",
-        "issuancetime": 1600300800
+        "rawvalue": null,
+        "value": null,
+        "id": "irma-demo.stemmen.stempas.votingnumber",
+        "status": "NULL",
+        "issuancetime": 1604534400
       }
     ]
   ],
@@ -89,17 +85,20 @@ document.getElementById('vote').addEventListener('click', () => {
     "@context": "https://irma.app/ld/signature/v2",
     "signature": [
       {
-        "c": "4mACR4HgF4PvkLYfJSSTK1piG+F+IkBVPxudViWn1XE=",
-        "A": "Yv4yVCNYMGgI/foYIrnIZozqfWzd4/MHKv9wBbso2ajXxr7PJM2pXaSXmTbeatPnb86jujMrUoBo3seNLJ8b0vXA5Qk2xh6GEE1SOFnzEVPM4yV882BIoD4npV02MzWYfIe6I/YIaxeUmRikp/SObXI2lY1UcPPG/1mudKLHap8=",
-        "e_response": "Zoeo7MFLBEmsKOjTuRn1xBvuMVKcjN6bz4trwOkqupi6uJnjrfc7FTYOH25EmbU0jcuh8LdFkpcL",
-        "v_response": "C6a+yD1GQAAeSNviX1wzhQQW1l3o1bTAqw3OxpbyIBzzbp/ivNX2xWsID66bwERPAn7aGNcFaC2OX2U1KKapPrdC2ZXmSnWOyOS1IQwfsO4hf1yRBy0sCZHdNtz+LSE87oYgIvqmWDaNzPsMcsMey7Sct0G78eUAL0VBIlTX7sOG+Nsp+ry4/XHkfGyQYEukRXWji6E83L07WfF70gsFFi/tAa/Sq5X0drvBf/P4Oca2AzTtXd9GaYnpeR+Xp77kqFpaTbsHWmJYEVyIhHJBg6P9WhNqP3ytNV4qsJRZva7VpCjleL+AkB00ZK3kIdoXK8W/mvZSwi9oEBJibmm1",
+        "c": "Rfq7ndri+yUpb/B+KpldbpySmV5218sle7NPVT5Io4w=",
+        "A": "ZyuJTZt7+vfqO5iRit5eaqkMXgNkU2Z4HZVbuQ9oG32jETmenXA7TvS5+xvFEhMcdRqzJkN8HzA4CiolJKwAWBvMHZzEH4sbtogiSGmxHUjz+PobrXZ9eDHCu80BEHeunmXgQCVUWNzj+/5tqooTIo/rHV/whposMddWFXLz/CY=",
+        "e_response": "FCFeOuhnEw3BQNJjdC22qvTb93WShpKdZN9wbo2JMxLyHufZ0g/cRqB4BI75/F4iIuSN85bIIw/8",
+        "v_response": "BbMVjabBzpr4DtvONItlYXr7x0YP8uX8NoQg5YKQOams0Ixzf41ARdq3MGYdaq6zvcU2BMdI3+9qv4eJIsLNLUflpg0mw8bCdxFCcbncapqYSGb7iZh9WTu+B+pgztaBh2ktM1lCT5CjbPT5AyGcC9aHMIzX7eqtjmgPS0yratJBj6qNoa505yXea79aBhhrplmTed3xIgnVilmDgGz6FdTYZPcrbhAkK5dqxKJ4kVkiJRIjBtO0GjHRd+enE4dPCXY2pIN+V3D7PGDs+ZBKc+pWvjwrAZmcdd0kHVjFcJoZTOB3WZ032OzWBbDoqKS3/WeQ9HF6+y1DWSv+KnT7",
         "a_responses": {
-          "0": "BOxm+tLH1Wl4XANOkSLieC1l49smUOCqOBm3AwPq/OEU0axluKCHBQdDWYTA1XZrYFLyHgG7md/zTsz0haz2Xl9ZrtZKRcjIlO4="
+          "0": "NPoG2pi7u4WWG/VrIBUuA99RAIKut4rfYzXacsKCmYQkmaQyS+gxHnTL98OvUkkwhh6ffG5rMKQ+b8j9bFYkVmxdMLrxR1zo2cA=",
+          "4": "xDjJPiKk1jrhkr0tZxwF2iY7xHXs2dTdGgxnO9ZAvc/jxL03JDReHz0mfqARPqqMKcHiLD2Nc/WqPhF9pe/VurvuYptb+FBjp0M=",
+          "5": "3N/ldCWCKJij28MJIjZPAE2mQ44cFkCHAlFACPeSKJx7ZS+Af3+k1WClhjIVjfJmJi8L21KLDt+VhJCQotiSZUBPCU9TNrJ5dGA=",
+          "6": "Y40Tirv1YHUKZx6TPvj9NdJ3+u1b0JRrKlE8PMzTOcur/R+BDvp0ltTDYBmE9yYpQN22xN7FTnk4aOFKDcC6DUIXjt9l8ujideE="
         },
         "a_disclosed": {
-          "1": "AwAKVgAaAAHoerasdGHy0VAlhe6aBc8l",
-          "2": "7N7oyw==",
-          "3": "amJubGZmYGhh"
+          "1": "AwAKXQAaAADS0fKeBGn0500XKCoNBNol",
+          "2": "iMra3kCK2MrG6NLe3Q==",
+          "3": "PQ2tkZeIL45uE37vdpPoAthp081M68Wt48VWAk34vKQ="
         }
       }
     ],
@@ -115,15 +114,15 @@ document.getElementById('vote').addEventListener('click', () => {
         }
       ]
     ],
-    "nonce": "fEB2jHmaMSqkI+o1lrK3RA==",
+    "nonce": "Na7jv7T8iURdkhdhiBWU6w==",
     "context": "AQ==",
     "message": "I choose to vote for Option 1",
     "timestamp": {
-      "Time": 1600859876,
+      "Time": 1604766602,
       "ServerUrl": "https://keyshare.privacybydesign.foundation/atumd/",
       "Sig": {
         "Alg": "ed25519",
-        "Data": "OywV+m4FoXdVxthZtZ+TVuycBPfF1qYXg4bxsScuOqMHE4208WvOC596elhKREz9xvPCaRhk5h1d9TJ/D1POAw==",
+        "Data": "4bkG+YG+nVO59hVklUAm9AxcoB9px1kSx08Echez/cRv0XktnTnhYhsCq3TjM49Wp5ooqNCa34CK64pH7oiLAw==",
         "PublicKey": "MKdXxJxEWPRIwNP7SuvP0J/M/NV51VZvqCyO+7eDwJ8="
       }
     }
