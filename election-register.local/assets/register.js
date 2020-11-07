@@ -52,7 +52,7 @@ document.getElementById('register').addEventListener('click', () => {
         } else {
             console.log("These attributes are eligible to vote!");
             // Send through to voting card retrieval
-            window.location = '/views/retrieve.html';
+            window.location = './views/retrieve.html';
         }
     })
     .catch(error => {
