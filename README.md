@@ -4,6 +4,7 @@ This repository contains code that is part my Master's thesis project: a fronten
 It consists of the two websites
 - `election-register.local`
 - `election-vote.local`
+
 that allow you to register and vote in a demo election respectively.
 
 If you don't wish to download and/or configure Apache to host these websites on your machine, simply download or clone this repository, and follow the instructions in both those folders' README files. You can skip the Apache configuration in this case, and just open the `index.html` files in each of the two folders after compilation.
