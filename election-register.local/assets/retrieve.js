@@ -56,7 +56,10 @@ irma.use(IrmaWeb);
 irma.use(IrmaClient);
 
 irma.start()
-.then(result => console.log("Successful! 🎉", result))
+.then(result => {
+    console.log("Successful! 🎉", result);
+    window.location = './success.html';
+})
 .catch(error => {
   if (error === 'Aborted') {
     console.log('We closed it ourselves, so no problem 😅');

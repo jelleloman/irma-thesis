@@ -69,8 +69,9 @@ document.getElementById('confirm').addEventListener('click', () => {
 
     irma.start()
     .then(result => {
-        console.log('Successful signature! A success page will come later');
+        console.log('Successful signature!');
         console.log(result);
+        window.location = './views/success.html';
     })
     .catch(error => {
       if (error === 'Aborted') {
