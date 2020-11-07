@@ -20,7 +20,7 @@ To then recompile the changed JavaScript, run
 ```bash
 npm run build
 ```
-in this directory. This updates the `bundle_register.js` and `bundle_retrieve` files in the `assets` folder, giving you the updated functionality.
+in this directory. This updates the `bundle_register.js` and `bundle_retrieve.js` files in the `assets` folder, giving you the updated functionality.
 
 ## Changing the look
 The styling of everything but the interactive IRMA elements is controlled by the `assets/style.css` file.
