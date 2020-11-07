@@ -75,6 +75,7 @@ document.getElementById('confirm').addEventListener('click', () => {
     .catch(error => {
       if (error === 'Aborted') {
         console.log('We closed it ourselves, so no problem 😅');
+        modal.style.display = "none";
         return;
       }
       console.error("Couldn't do what you asked 😢", error);

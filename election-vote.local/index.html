@@ -14,7 +14,8 @@
       <script src="assets/bundle_vote.js" defer></script>
       <script>
           function check() {
-              document.getElementById('vote').disabled = false;
+              var vote = document.getElementById('vote');
+              vote.style.display = "inline";
           }
       </script>
     </head>
@@ -48,8 +49,8 @@
                         </header>
                         <article>
                             <p>This demo site shows the vote casting process for digital elections with IRMA.
-                            If you already have a mock-up voting card after registering <a href="http://election-register.local">here</a>, you can select an option below and click 'Vote'.
-                            This prompts you to scan a QR code to confirm your choice. Your vote will be shown in the mobile application in natural language before you confirm.</p>
+                            If you already have a mock-up voting card after registering <a href="http://election-register.local">here</a>, you can select an option below and click 'Vote'. This will prompt you to confirm your choice.</p>
+                            <p>If you confirm, you are prompted to scan a QR code to sign your choice. Your vote will be shown in the mobile application in natural language before you confirm your signature.</p>
                         </article>
                         <div class="voteOptions">
                             <div class="radio-toolbar">
@@ -66,7 +67,7 @@
                             </div>
                         </div>
                         <div class="registerButton">
-                            <button class="button" id="vote" disabled>Vote</button>
+                            <button class="button" id="vote">Vote</button>
                         </div>
 
                         <!-- A modal for confirming the voting choice -->
