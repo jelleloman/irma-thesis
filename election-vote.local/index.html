@@ -9,6 +9,7 @@
       <title>Vote in an IRMA election</title>
 
       <link rel="stylesheet" type="text/css" href="assets/style.css">
+      <link rel="stylesheet" type="text/css" href="assets/modal.css">
 
       <script src="assets/bundle_vote.js" defer></script>
       <script>
@@ -67,6 +68,25 @@
                         <div class="registerButton">
                             <button class="button" id="vote" disabled>Vote</button>
                         </div>
+
+                        <!-- A modal for confirming the voting choice -->
+                        <div id="modal" class="modal">
+                          <!-- Modal content -->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h2>Confirm your choice</h2>
+                            </div>
+                            <div class="modal-body">
+                              <p>You have chosen to vote for</p>
+                              <h3 id="voteChoice">Option x</h3>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="button" id="cancel">Cancel</button>
+                                <button class="button" id="confirm">Confirm</button>
+                            </div>
+                          </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

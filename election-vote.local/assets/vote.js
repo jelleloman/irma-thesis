@@ -4,53 +4,83 @@ const IrmaCore   = require('@privacybydesign/irma-core');
 const IrmaPopup  = require('@privacybydesign/irma-popup');
 const IrmaClient = require('@privacybydesign/irma-client');
 
+// Get the modal
+var modal = document.getElementById("modal");
+var radios = document.getElementsByName('options');
+// var vote = document.getElementById("vote");
+// var cancel = document.getElementById("cancel");
+var choice = "";
+
+// When the user clicks the button, open the modal
 document.getElementById('vote').addEventListener('click', () => {
-    var radios = document.getElementsByName('options');
     for (var i = 0, length = radios.length; i < length; i++) {
         if (radios[i].checked) {
-            const irma = new IrmaCore({
-              debugging: true,
-              language:  'en',
-              translations: {
-                header:  '<i class="irma-web-logo">IRMA</i>Cast your vote',
-                loading: 'Just one second please!'
-              },
-              session: {
-                  url: 'http://localhost:8088',
-                  start: {
-                      method: 'POST',
-                      headers: {
-                          'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                          '@context': 'https://irma.app/ld/request/signature/v2',
-                          'message': 'I choose to vote for ' + radios[i].value,
-                          'disclose': [[[
-                              { 'type': "irma-demo.stemmen.stempas.election", 'value': "Demo Election" },
-                              { 'type': "irma-demo.stemmen.stempas.votingnumber", 'value': null }
-                          ]]]
-                      })
-                  }
-              }
-            });
-
-            irma.use(IrmaPopup);
-            irma.use(IrmaClient);
-
-            irma.start()
-            .then(result => {
-                console.log('Successful signature! A success page will come later');
-                console.log(result);
-            })
-            .catch(error => {
-              if (error === 'Aborted') {
-                console.log('We closed it ourselves, so no problem 😅');
-                return;
-              }
-              console.error("Couldn't do what you asked 😢", error);
-            });
+            choice = radios[i].value;
         }
     }
+    var voteChoice = document.getElementById('voteChoice');
+    voteChoice.innerText = choice;
+    modal.style.display = "block";
+})
+
+document.getElementById('cancel').addEventListener('click', () => {
+    modal.style.display = "none";
+})
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+document.getElementById('confirm').addEventListener('click', () => {
+    var radios = document.getElementsByName('options');
+    // for (var i = 0, length = radios.length; i < length; i++) {
+    //     if (radios[i].checked) {
+    const irma = new IrmaCore({
+      debugging: true,
+      language:  'en',
+      translations: {
+        header:  '<i class="irma-web-logo">IRMA</i>Cast your vote',
+        loading: 'Just one second please!'
+      },
+      session: {
+          url: 'http://localhost:8088',
+          start: {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                  '@context': 'https://irma.app/ld/request/signature/v2',
+                  'message': 'I choose to vote for ' + choice,
+                  'disclose': [[[
+                      { 'type': "irma-demo.stemmen.stempas.election", 'value': "Demo Election" },
+                      { 'type': "irma-demo.stemmen.stempas.votingnumber", 'value': null }
+                  ]]]
+              })
+          }
+      }
+    });
+
+    irma.use(IrmaPopup);
+    irma.use(IrmaClient);
+
+    irma.start()
+    .then(result => {
+        console.log('Successful signature! A success page will come later');
+        console.log(result);
+    })
+    .catch(error => {
+      if (error === 'Aborted') {
+        console.log('We closed it ourselves, so no problem 😅');
+        return;
+      }
+      console.error("Couldn't do what you asked 😢", error);
+    });
+    //     }
+    // }
 });
 
 /* Raw result example
