@@ -4,8 +4,8 @@ module.exports = {
 	mode: 'development',
 
 	entry: {
-		'bundle_retrieve': './assets/retrieve.js'
-        // 'bundle_register': './assets/register.js'
+		'bundle_retrieve': './assets/retrieve.js',
+        'bundle_register': './assets/register.js'
 	},
 
 	output: {

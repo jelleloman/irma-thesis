@@ -22,7 +22,7 @@ var startDate = formatDate(date);
 var endDate = formatDate(date.setDate(date.getDate() + 1));
 
 const irma = new IrmaCore({
-  debugging: false,
+  debugging: true,
   element:   '#irma-web-form',
   language:  'en',
   translations: {

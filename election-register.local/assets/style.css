@@ -354,7 +354,10 @@ article p img {
 }
 .inputs{
     text-align: center;
-    padding: 15px;
+    padding-top: 10px;
+}
+#inputDiv {
+    display: none;
 }
 input {
   padding: 10px;
@@ -366,7 +369,6 @@ input {
 }
 .registerButton{
     text-align: center;
-    padding-top: 25px;
 }
 .button {
  border:1px solid #004c92;

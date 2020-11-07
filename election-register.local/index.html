@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="assets/style.css">
 
-    <script src="assets/bundle_register.js"></script>
+    <script src="assets/bundle_register.js" defer></script>
   </head>
 
   <body>
@@ -24,8 +24,11 @@
                           <li class="siteNavGroupActive">
                               <a href="/" target="_self">Register</a>
                           </li>
+                          <li class="" id="attrHeader">
+                              <a href="#" onclick="return false;">Attribute Input</a>
+                          </li>
                           <li class="">
-                              <a href="https://privacybydesign.foundation" target="_self">Privacy by Design Foundation</a>
+                              <a href="https://privacybydesign.foundation" target="_blank">Privacy by Design Foundation</a>
                           </li>
                       </ul>
                   </nav>
@@ -42,16 +45,20 @@
                             <h1 class="postHeaderTitle">IRMA election registration demo</h1>
                         </header>
                         <article>
-                            <p>Welcome to the registration page for this election. Here, you can request a voting card to use in the upcoming election. This requires two steps:
+                            <p>Welcome to the registration page for this election. Here, you can request a voting card to use in the upcoming election. This requires two steps that are done by scanning a QR code:
                                 <ol>
                                     <li><b>Confirming your identity</b></li>
                                     <li><b>Retrieving your voting card</b></li>
                                 </ol>
-                            Both are done by scanning a QR code.</p>
-
+                            </p>
                             <h2>Confirming your identity</h2>
-                            <p>Let's start with confirming your identity. To do this, you need to have the <a href="https://irma.app">IRMA app</a> installed on your phone. Once you have that, click the button below to get started.</p>
+                            <p>Let's start with confirming your identity. To do this, you need to have the <a href="https://irma.app" target="_blank">IRMA app</a> installed on your phone. Once you have that, click the button below to get started.</p>
+                            <p><i>Because this is a demo website, there is no backend that keeps track of eligible voters along with their attributes. Your identity is 'confirmed' by evaluating your</i> <code>pbdf.pbdf.email.email</code> <i>attribute. If you want to retrieve a voting card, enter an email address you have loaded in your IRMA app <a href="#" onclick="return false;"><span id="attrPage">here</span></a>.</i></p>
+                            <div class="inputs" id="inputDiv">
+                                <input id="email" type="text" value="j.loman@student.ru.nl"><br/>
+                            </div>
                         </article>
+                        <div style="height: 30px;"></div>
                         <div class="registerButton">
                             <button class="button" id="register">Confirm your identity</button>
                         </div>

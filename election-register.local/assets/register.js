@@ -1,78 +1,73 @@
-// Raw JavaScript file to handle IRMA sessions.
-// It is bundled into 'bundle.js' together with 'irma.js'
-// To recreate/update bundle.js, run:
-//    browserify register.js > bundle.js
-// If errors occur, perhaps 'npm install' will solve them.
+require('@privacybydesign/irma-css');
 
-const irma = require('./irma.js');
-const voters = ["j.loman@student.ru.nl"];
+const IrmaCore   = require('@privacybydesign/irma-core');
+const IrmaPopup  = require('@privacybydesign/irma-popup');
+const IrmaClient = require('@privacybydesign/irma-client');
 
-window.onload = function() {
-    document.getElementById('register').addEventListener('click', doVerificationSession);
+document.getElementById('attrHeader').addEventListener('click', toggleAttributeInput);
+document.getElementById('attrPage').addEventListener('click', toggleAttributeInput);
+
+function toggleAttributeInput() {
+    var inputDiv = document.getElementById('inputDiv');
+    if (inputDiv.style.display === 'none' || inputDiv.style.display === '') {
+        inputDiv.style.display = 'block';
+    } else {
+        inputDiv.style.display = 'none';
+    }
 }
 
-// Package user values into an IRMA request object, and perform a session
-function doVerificationSession() {
-  const request = {
-    '@context': 'https://irma.app/ld/request/disclosure/v2',
-    'disclose': [
-      [
-        [ 'pbdf.pbdf.email.email' ]
-      ]
-    ]
-  };
-  doSession(request).then(function(result) {
-                        var eligible = parseResult(result);
-                        if (!eligible) {
-                            var modal = document.getElementById("myModal");
-                            modal.style.display = "block";
-                        } else {
-                            console.log("Voter is eligible!");
-                            window.location.replace("http://election-register.local/views/retrieve.html")
-                        }
-                    })
-                    .catch(function(err) {
-                        if (err !== "CANCELLED") {
-                            console.log("Not a cancellation");
-                            console.error(err);
-                        } else {
-                            console.log("Just a cancellation...");
-                        }
-                    });
-}
+document.getElementById('register').addEventListener('click', () => {
+    const irma = new IrmaCore({
+      debugging: true,
+      language:  'en',
+      translations: {
+        header:  '<i class="irma-web-logo">IRMA</i>Confirm your identity',
+        loading: 'Just one second please!'
+      },
+      session: {
+          url: 'http://localhost:8088',
+          start: {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                  '@context': 'https://irma.app/ld/request/disclosure/v2',
+                  'disclose': [[[ 'pbdf.pbdf.email.email' ]]]
+              })
+          }
+      }
+    });
 
-// Perform a stock, !unsafe! IRMA session with 'request'
-function doSession(request) {
-  console.log("Starting IRMA session.");
+    irma.use(IrmaPopup);
+    irma.use(IrmaClient);
 
-  const server = 'http://localhost:8088';
-  const authmethod = 'none';
-  const key = '';
-  const requestorname = '';
-
-  return irma.startSession(server, request, authmethod, key, requestorname)
-         .then(function(pkg) {
-             let options = {
-                 server: server,
-                 token: pkg.token,
-                 method: 'popup',
-                 language: 'en'
-             };
-             return irma.handleSession(pkg.sessionPtr, options);
-         })
-         .then(function(result) {
-             console.log("Done with irma session, returning result.");
-             return result;
-         })
-         .catch(function(err) {
-             console.error("Issue with irma session, returning error.");
-             throw err;
-         });
-}
+    irma.start()
+    .then(result => {
+        var eligible = parseResult(result);
+        if (!eligible) {
+            console.error("These attributes are not eligible to vote");
+            // Pop up to show ineligibility?
+            return;
+        } else {
+            console.log("These attributes are eligible to vote!");
+            // Send through to voting card retrieval
+            window.location = '/views/retrieve.html';
+        }
+    })
+    .catch(error => {
+      if (error === 'Aborted') {
+        console.log('We closed it ourselves, so no problem 😅');
+        return;
+      }
+      console.error("Couldn't do what you asked 😢", error);
+    });
+});
 
 function parseResult(result) {
+    var expectedValue = document.getElementById('email').value;
     var rawValue = result.disclosed[0][0].rawvalue;
-    return voters.includes(rawValue);
+    return rawValue === expectedValue;
 }
 
 /* Raw result example
