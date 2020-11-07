@@ -65,9 +65,7 @@ If you don't have this attribute yet, you can load it into the IRMA app by tappi
 (Not yet implemented)
 
 ### election-register.local
-With an `irma server` running in the background, navigate to `election-register.local` (or open the `election-register.local/index.html` file). Enter the e-mail address you wish to vote with in the 'E-mail' box. This should prompt you to disclose your `pbdf.pbdf.email.email` attribute.
-
-If the email attribute you entered is disclosed successfully, you will be issued a 'voting token' (a demo [IRMATube membership](https://privacybydesign.foundation/attribute-index/nl/irma-demo.IRMATube.member.html) card that has a 'vote' type). This token can then be used to cast a vote on `election-vote.local`.
+See the folder's [README](election-register.local/README.md) for further instructions.
 
 ### election-vote.local
 Select an option from the list, and click the 'Vote' button. Scan the QR code with the IRMA app to sign your vote with the voting token retrieved during registration. The app should indicate your choice in natural language.
