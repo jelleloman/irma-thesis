@@ -10,7 +10,7 @@
 
       <link rel="stylesheet" type="text/css" href="assets/style.css">
 
-      <script src="assets/bundle.js"></script>
+      <script src="assets/bundle_vote.js" defer></script>
       <script>
           function check() {
               document.getElementById('vote').disabled = false;
@@ -29,9 +29,6 @@
                                 <a href="/" target="_self">Vote</a>
                             </li>
                             <li class="">
-                                <a href="https://privacybydesign.foundation/attribute-index/en/" target="_self">Attribute index</a>
-                            </li>
-                            <li class="">
                                 <a href="https://privacybydesign.foundation" target="_self">Privacy by Design Foundation</a>
                             </li>
                         </ul>
@@ -46,7 +43,7 @@
                 <div class="wrapper">
                     <div class="post">
                         <header class="postHeader">
-                            <h1 class="postHeaderTitle">Vote casting demo</h1>
+                            <h1 class="postHeaderTitle">Cast your vote</h1>
                         </header>
                         <article>
                             <p>This demo site shows the vote casting process for digital elections with IRMA.
@@ -67,8 +64,8 @@
                                 <label for="option3">Option 3</label>
                             </div>
                         </div>
-                        <div class="voteButton">
-                            <button class="button" id="vote">Vote</button>
+                        <div class="registerButton">
+                            <button class="button" id="vote" disabled>Vote</button>
                         </div>
                     </div>
                 </div>

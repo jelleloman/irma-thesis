@@ -1,44 +1,3 @@
-/* body, button, input {
-  font-family: "Arial";
-  line-height: 1.3em;
-  font-size: 16px;
-}
-
-input {
-  width: 20em;
-}
-
-button {
-  margin: 1em 0;
-  padding: 0.3em;
-  text-align: center;
-  align-self: flex-end;
-}
-
-h2, h3 {
-  margin-top: 2em;
-}
-
-img {
-  position: absolute;
-  left: 50%;
-  bottom: -20px;
-  width: 40px;
-  height: 40px;
-  margin-left: -20px;
-}
-
-#container {
-  margin: 50px auto;
-  max-width: 600px;
-}
-
-.label {
-  display: inline-block;
-  width: 140px;
-  text-align: right;
-  margin-bottom: 0.3em;
-} */
 a,
 abbr,
 acronym,
@@ -122,7 +81,7 @@ var,
 video {
  border:0;
  font:inherit;
- /*! font-size:100%; */
+ /* font-size:100%; */
  margin:0;
  padding:0;
  vertical-align:baseline
@@ -394,33 +353,51 @@ article p img {
  vertical-align:middle
 }
 .inputs{
-    align-content: center;
-    padding: 0px;
+    text-align: center;
+    padding-top: 10px;
+}
+#inputDiv {
+    display: none;
 }
 input {
-  padding: 0px;
+  padding: 10px;
   width: 250px;
   font-size: 16px;
   border:1px solid #004c92;
   border-radius:3px;
   display:inline-block;
 }
-.voteButton{
+.registerButton{
     text-align: center;
-  margin:-20px;
-  padding-left: 190px
+}
+.button {
+ border:1px solid #004c92;
+ border-radius:3px;
+ background: #004c92;
+ color:#fff;
+ display:inline-block;
+ font-size:14px;
+ font-weight:400;
+ line-height:1.2em;
+ padding:10px;
+ text-decoration:none!important;
+ text-transform:uppercase;
+ -webkit-transition:background .3s,color .3s;
+ transition:background .3s,color .3s
+}
+.button:hover {
+ background:#fff;
+ color:#004c92
 }
 .radio-toolbar {
   padding: 5px;
   text-align: center;
 }
-
 .radio-toolbar input[type="radio"] {
   opacity: 0;
   position: fixed;
   width: 0;
 }
-
 .radio-toolbar label {
     display: inline-block;
   width:250px;
@@ -432,43 +409,19 @@ input {
      border-radius:3px;
      color:#004c92;
 }
-
 .radio-toolbar label:hover {
   background-color: #004c92;
   color:#fff;
 }
-
 .radio-toolbar input[type="radio"]:focus + label {
     border: 2px dashed #444;
 }
-
 .radio-toolbar input[type="radio"]:checked + label {
     background-color: #004c92;
     color:#fff;
 }
-
 .voteOptions {
     padding: 20px;
-}
-.button {
- border:1px solid #004c92;
- border-radius:3px;
- background: white;
- color:#004c92;
- display:inline-block;
- font-size:14px;
- font-weight:400;
- line-height:1.2em;
- padding:10px;
- margin:15px;
- text-decoration:none!important;
- text-transform:uppercase;
- -webkit-transition:background .3s,color .3s;
- transition:background .3s,color .3s
-}
-.button:hover {
- background:#004c92;
- color:#fff
 }
 h1:hover .hash-link,
 h2:hover .hash-link,
@@ -607,7 +560,7 @@ blockquote {
  -webkit-box-flex:1;
  flex:1 1 auto;
  max-width:100%;
- padding:25px 50px
+ padding:25px 50px;
 }
 .mainContainer .wrapper {
  text-align:left
@@ -678,9 +631,9 @@ blockquote {
  .mainContainer .wrapper .post {
   display:block
  }
- .wrapper {
-   max-width: 800px
- }
+  .wrapper {
+    max-width: 800px
+  }
  .mainContainer .wrapper .posts .post {
   width:100%
  }
